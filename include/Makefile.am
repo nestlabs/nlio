@@ -1,5 +1,5 @@
 #
-#    Copyright 2015-2016 Nest Labs Inc. All Rights Reserved.
+#    Copyright 2015-2017 Nest Labs Inc. All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -31,10 +31,11 @@ include_HEADERS =             \
     nlio-base.hpp             \
     nlio-byteorder-big.h      \
     nlio-byteorder-big.hpp    \
-    nlio-byteorder.h          \
-    nlio-byteorder.hpp        \
     nlio-byteorder-little.h   \
     nlio-byteorder-little.hpp \
+    nlio-byteorder.h          \
+    nlio-byteorder.hpp        \
+    nlio-private.h            \
     nlio.h                    \
     nlio.hpp                  \
     $(NULL)

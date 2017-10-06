@@ -1,5 +1,5 @@
 /**
- *    Copyright 2013-2016 Nest Labs Inc. All Rights Reserved.
+ *    Copyright 2013-2017 Nest Labs Inc. All Rights Reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,27 +24,23 @@
 #ifndef NLIO_BASE_H
 #define NLIO_BASE_H
 
+#include <nlio-private.h>
+
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
 
 /*
- * If we are compiling under clang, GCC, or any such compatible compiler, in which
- * -fno-builtins or -ffreestanding might be asserted, thereby eliminating built-in
- * function optimization, we STILL want built-in memcpy. We want this because it allows
- * the compiler to use architecture-specific machine instructions or inline code
- * generation to optimize an otherwise-expensive memcpy for unaligned reads and writes,
- * which is the exactly the kind of efficiency that would be expected of nlIO.
+ * If we are compiling under clang, GCC, or any such compatible
+ * compiler, in which -fno-builtins or -ffreestanding might be
+ * asserted, thereby eliminating built-in function optimization, we
+ * STILL want built-in memcpy. We want this because it allows the
+ * compiler to use architecture-specific machine instructions or
+ * inline code generation to optimize an otherwise-expensive memcpy
+ * for unaligned reads and writes, which is the exactly the kind of
+ * efficiency that would be expected of nlIO.
  */
-#ifdef __clang__
-#define nlIOHasBuiltin(...) __has_builtin(__VA_ARGS__)
-#elif defined __GNUC__
-#define nlIOHasBuiltin(...) 1
-#else
-#define nlIOHasBuiltin(...) 0
-#endif /* __clang__ */
-
-#if nlIOHasBuiltin(__builtin_memcpy)
+#if __nlIOHasBuiltin(__builtin_memcpy)
 #define __nlIO_MEMCPY __builtin_memcpy
 #else
 #define __nlIO_MEMCPY memcpy
