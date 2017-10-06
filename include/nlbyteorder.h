@@ -1,5 +1,5 @@
 /**
- *    Copyright 2012-2016 Nest Labs Inc. All Rights Reserved.
+ *    Copyright 2012-2017 Nest Labs Inc. All Rights Reserved.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -25,7 +25,39 @@
 #ifndef NLBYTEORDER_H
 #define NLBYTEORDER_H
 
+#include <nlio-private.h>
+
 #include <stdint.h>
+
+/*
+ * If we are compiling under clang, GCC, or any such compatible
+ * compiler, in which -fno-builtins or -ffreestanding might be
+ * asserted, thereby eliminating built-in function optimization, we
+ * STILL want to leverage built-in bswap{16,32,64}, if available. We
+ * want this because it allows the compiler to use
+ * architecture-specific machine instructions or inline code
+ * generation to optimize an otherwise-generic and non-optimized code
+ * for byte reordering, which is the exactly the kind of efficiency
+ * that would be expected of nlByteOrder.
+ */
+
+#if __nlIOHasBuiltin(__builtin_bswap16)
+#define __nlBYTEORDER_BSWAP16 __builtin_bswap16
+#else
+#define __nlBYTEORDER_BSWAP16 nlByteOrderConstantSwap16
+#endif
+
+#if __nlIOHasBuiltin(__builtin_bswap32)
+#define __nlBYTEORDER_BSWAP32 __builtin_bswap32
+#else
+#define __nlBYTEORDER_BSWAP32 nlByteOrderContantSwap32
+#endif
+
+#if __nlIOHasBuiltin(__builtin_bswap64)
+#define __nlBYTEORDER_BSWAP64 __builtin_bswap64
+#else
+#define __nlBYTEORDER_BSWAP64 nlByteOrderConstantSwap64
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -191,7 +223,7 @@ static inline nlByteOrder nlByteOrderGetCurrent(void)
  */
 static inline uint16_t nlByteOrderValueSwap16(uint16_t inValue)
 {
-    return nlByteOrderConstantSwap16(inValue);
+    return __nlBYTEORDER_BSWAP16(inValue);
 }
 
 /**
@@ -204,7 +236,7 @@ static inline uint16_t nlByteOrderValueSwap16(uint16_t inValue)
  */
 static inline uint32_t nlByteOrderValueSwap32(uint32_t inValue)
 {
-    return nlByteOrderConstantSwap32(inValue);
+    return __nlBYTEORDER_BSWAP32(inValue);
 }
 
 /**
@@ -217,7 +249,7 @@ static inline uint32_t nlByteOrderValueSwap32(uint32_t inValue)
  */
 static inline uint64_t nlByteOrderValueSwap64(uint64_t inValue)
 {
-    return nlByteOrderConstantSwap64(inValue);
+    return __nlBYTEORDER_BSWAP64(inValue);
 }
 
 /**
@@ -281,8 +313,10 @@ static inline void nlByteOrderPointerSwap64(uint64_t *inValue)
 }
 #endif
 
+#undef __nlBYTEORDER_BSWAP16
+#undef __nlBYTEORDER_BSWAP32
+#undef __nlBYTEORDER_BSWAP64
+
 #endif /* NLBYTEORDER_H */
-
-
 
 
