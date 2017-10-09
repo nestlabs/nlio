@@ -37,7 +37,7 @@
  * STILL want built-in memcpy. We want this because it allows the
  * compiler to use architecture-specific machine instructions or
  * inline code generation to optimize an otherwise-expensive memcpy
- * for unaligned reads and writes, which is the exactly the kind of
+ * for unaligned reads and writes, which is exactly the kind of
  * efficiency that would be expected of nlIO.
  */
 #if __nlIOHasBuiltin(__builtin_memcpy)
