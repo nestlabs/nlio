@@ -50,7 +50,7 @@
 #if __nlIOHasBuiltin(__builtin_bswap32)
 #define __nlBYTEORDER_BSWAP32 __builtin_bswap32
 #else
-#define __nlBYTEORDER_BSWAP32 nlByteOrderContantSwap32
+#define __nlBYTEORDER_BSWAP32 nlByteOrderConstantSwap32
 #endif
 
 #if __nlIOHasBuiltin(__builtin_bswap64)
