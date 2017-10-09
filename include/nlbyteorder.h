@@ -37,8 +37,8 @@
  * want this because it allows the compiler to use
  * architecture-specific machine instructions or inline code
  * generation to optimize an otherwise-generic and non-optimized code
- * for byte reordering, which is the exactly the kind of efficiency
- * that would be expected of nlByteOrder.
+ * for byte reordering, which is exactly the kind of efficiency that
+ * would be expected of nlByteOrder.
  */
 
 #if __nlIOHasBuiltin(__builtin_bswap16)
