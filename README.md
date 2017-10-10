@@ -1,3 +1,5 @@
+[![Build Status][nlio-travis-svg]][nlio-travis]
+
 Nest Labs Memory Mapped I/O
 ===========================
 
@@ -16,6 +18,9 @@ and C++ language bindings to macros and functions for:
    potentially to unaligned memory locations, with or without byte
    reordering, to 8-, 16-, 32-, and 64-bit quantities. Functions
    both with and without pointer management are also available.
+
+[nlio-travis]: https://travis-ci.org/nestlabs/nlio
+[nlio-travis-svg]: https://travis-ci.org/nestlabs/nlio.svg?branch=master
 
 # Interact
 
