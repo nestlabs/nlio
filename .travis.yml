@@ -1,0 +1,8 @@
+language: generic
+sudo: false
+compiler:
+  - clang
+  - gcc
+
+script:
+  - ./configure && make && make distcheck
