@@ -1,4 +1,5 @@
 [![Build Status][nlio-travis-svg]][nlio-travis]
+[![Coverage Status][nlio-codecov-svg]][nlio-codecov]
 
 Nest Labs Memory Mapped I/O
 ===========================
@@ -21,6 +22,8 @@ and C++ language bindings to macros and functions for:
 
 [nlio-travis]: https://travis-ci.org/nestlabs/nlio
 [nlio-travis-svg]: https://travis-ci.org/nestlabs/nlio.svg?branch=master
+[nlio-codecov]: https://codecov.io/gh/nestlabs/nlio
+[nlio-codecov-svg]: https://codecov.io/gh/nestlabs/nlio/branch/master/graph/badge.svg
 
 # Interact
 
