@@ -1,5 +1,5 @@
 #
-#    Copyright 2015-2017 Nest Labs Inc. All Rights Reserved.
+#    Copyright 2015-2018 Nest Labs Inc. All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -24,21 +24,24 @@ include $(abs_top_nlbuild_autotools_dir)/automake/pre.am
 
 # Always package (e.g. for 'make dist') these subdirectories.
 
-DIST_SUBDIRS             = \
-    nlunit-test/repo       \
+DIST_SUBDIRS                      = \
     $(NULL)
+
+# NLUNIT_TEST_SUBDIRS is not a permanent part of DIST_SUBDIRS since we do not
+# ever want to include it in a distribution archive; however, when it's been
+# pulled as a 'repo' module, we do want to remove it on invocation of the
+# 'distclean' target. Consequently, we conditionally include it in DIST_SUBDIRS
+# on invocation of 'distclean-recursive'
+
+distclean-recursive: DIST_SUBDIRS += $(NLUNIT_TEST_SUBDIRS)
 
 # Always build (e.g. for 'make all') these subdirectories.
+#
+# The value of NLUNIT_TEST_SUBDIRS will be populated by configure if
+# --with-nlunit_test=internal
 
-SUBDIRS                  = \
+SUBDIRS                           = \
+    $(NLUNIT_TEST_SUBDIRS)          \
     $(NULL)
-
-# Only build (e.g. for 'make all') these subdirectories when requested.
-
-if NLIO_WITH_NLUNIT_TEST_INTERNAL
-SUBDIRS                 += \
-    nlunit-test/repo       \
-    $(NULL)
-endif # NLIO_WITH_NLUNIT_TEST_INTERNAL
 
 include $(abs_top_nlbuild_autotools_dir)/automake/post.am
