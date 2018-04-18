@@ -15,7 +15,7 @@
 @SET_MAKE@
 
 #
-#    Copyright 2015-2017 Nest Labs Inc. All Rights Reserved.
+#    Copyright 2015-2018 Nest Labs Inc. All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -100,12 +100,6 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
-
-# Only build (e.g. for 'make all') these subdirectories when requested.
-@NLIO_WITH_NLUNIT_TEST_INTERNAL_TRUE@am__append_1 = \
-@NLIO_WITH_NLUNIT_TEST_INTERNAL_TRUE@    nlunit-test/repo       \
-@NLIO_WITH_NLUNIT_TEST_INTERNAL_TRUE@    $(NULL)
-
 subdir = third_party
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/third_party/nlbuild-autotools/repo/third_party/autoconf/mkinstalldirs
@@ -273,6 +267,7 @@ MKDIR_P = @MKDIR_P@
 NLUNIT_TEST_CPPFLAGS = @NLUNIT_TEST_CPPFLAGS@
 NLUNIT_TEST_LDFLAGS = @NLUNIT_TEST_LDFLAGS@
 NLUNIT_TEST_LIBS = @NLUNIT_TEST_LIBS@
+NLUNIT_TEST_SUBDIRS = @NLUNIT_TEST_SUBDIRS@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJCOPY = @OBJCOPY@
@@ -359,12 +354,17 @@ top_srcdir = @top_srcdir@
 
 # Always package (e.g. for 'make dist') these subdirectories.
 DIST_SUBDIRS = \
-    nlunit-test/repo       \
     $(NULL)
 
 
 # Always build (e.g. for 'make all') these subdirectories.
-SUBDIRS = $(NULL) $(am__append_1)
+#
+# The value of NLUNIT_TEST_SUBDIRS will be populated by configure if
+# --with-nlunit_test=internal
+SUBDIRS = \
+    $(NLUNIT_TEST_SUBDIRS)          \
+    $(NULL)
+
 all: all-recursive
 
 .SUFFIXES:
@@ -677,6 +677,14 @@ uninstall-am:
 
 
 include $(abs_top_nlbuild_autotools_dir)/automake/pre.am
+
+# NLUNIT_TEST_SUBDIRS is not a permanent part of DIST_SUBDIRS since we do not
+# ever want to include it in a distribution archive; however, when it's been
+# pulled as a 'repo' module, we do want to remove it on invocation of the
+# 'distclean' target. Consequently, we conditionally include it in DIST_SUBDIRS
+# on invocation of 'distclean-recursive'
+
+distclean-recursive: DIST_SUBDIRS += $(NLUNIT_TEST_SUBDIRS)
 
 include $(abs_top_nlbuild_autotools_dir)/automake/post.am
 
