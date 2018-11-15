@@ -107,10 +107,10 @@ NLIO_COVERAGE_INFO                             = ${NLIO_COVERAGE_BUNDLE}/${PACKA
 $(NLIO_COVERAGE_BUNDLE):
 	$(call create-directory)
 
-$(NLIO_COVERAGE_INFO): check | $(NLIO_COVERAGE_BUNDLE)
+$(NLIO_COVERAGE_INFO): check-local | $(NLIO_COVERAGE_BUNDLE)
 	$(call generate-coverage-report,${top_builddir})
 
-coverage: $(NLIO_COVERAGE_INFO)
+coverage-local: $(NLIO_COVERAGE_INFO)
 
 clean-local: clean-local-coverage
 
