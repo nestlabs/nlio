@@ -24,10 +24,10 @@
 #ifndef NLIO_BYTEORDER_H
 #define NLIO_BYTEORDER_H
 
-#include <nlio-base.h>
-#include <nlbyteorder.h>
+#include "nlio-base.h"
+#include "nlbyteorder.h"
 
-#include <nlio-byteorder-big.h>
-#include <nlio-byteorder-little.h>
+#include "nlio-byteorder-big.h"
+#include "nlio-byteorder-little.h"
 
 #endif /* NLIO_BYTEORDER_H */

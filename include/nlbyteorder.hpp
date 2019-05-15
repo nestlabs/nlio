@@ -25,7 +25,7 @@
 #ifndef NLBYTEORDER_HPP
 #define NLBYTEORDER_HPP
 
-#include <nlbyteorder.h>
+#include "nlbyteorder.h"
 
 namespace nl
 {

@@ -25,8 +25,8 @@
 #ifndef NLIO_BYTEORDER_BIG_HPP
 #define NLIO_BYTEORDER_BIG_HPP
 
-#include <nlio-base.hpp>
-#include <nlbyteorder.hpp>
+#include "nlio-base.hpp"
+#include "nlbyteorder.hpp"
 
 namespace nl
 {

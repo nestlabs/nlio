@@ -24,10 +24,10 @@
 #ifndef NLIO_BYTEORDER_HPP
 #define NLIO_BYTEORDER_HPP
 
-#include <nlio-base.hpp>
-#include <nlbyteorder.hpp>
+#include "nlio-base.hpp"
+#include "nlbyteorder.hpp"
 
-#include <nlio-byteorder-big.hpp>
-#include <nlio-byteorder-little.hpp>
+#include "nlio-byteorder-big.hpp"
+#include "nlio-byteorder-little.hpp"
 
 #endif // NLIO_BYTEORDER_HPP

@@ -24,7 +24,7 @@
 #ifndef NLIO_BASE_HPP
 #define NLIO_BASE_HPP
 
-#include <nlio-base.h>
+#include "nlio-base.h"
 
 namespace nl
 {

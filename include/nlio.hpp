@@ -25,8 +25,8 @@
 #ifndef NLIO_HPP
 #define NLIO_HPP
 
-#include <nlio-base.hpp>
-#include <nlio-byteorder.hpp>
+#include "nlio-base.hpp"
+#include "nlio-byteorder.hpp"
 
 #endif // NLIO_HPP
 

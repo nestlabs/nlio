@@ -25,8 +25,8 @@
 #ifndef NLIO_BYTEORDER_BIG_H
 #define NLIO_BYTEORDER_BIG_H
 
-#include <nlio-base.h>
-#include <nlbyteorder.h>
+#include "nlio-base.h"
+#include "nlbyteorder.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -25,7 +25,7 @@
 #ifndef NLBYTEORDER_H
 #define NLBYTEORDER_H
 
-#include <nlio-private.h>
+#include "nlio-private.h"
 
 #include <stdint.h>
 

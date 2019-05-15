@@ -24,7 +24,7 @@
 #ifndef NLIO_BASE_H
 #define NLIO_BASE_H
 
-#include <nlio-private.h>
+#include "nlio-private.h"
 
 #include <stdbool.h>
 #include <stdint.h>

@@ -25,8 +25,8 @@
 #ifndef NLIO_H
 #define NLIO_H
 
-#include <nlio-base.h>
-#include <nlio-byteorder.h>
+#include "nlio-base.h"
+#include "nlio-byteorder.h"
 
 #endif /* NLIO_H */
 
